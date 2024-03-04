@@ -1,0 +1,65 @@
+# Ignore vendor directory (Composer dependencies)
+/vendor/
+
+# Ignore node_modules directory (NPM dependencies)
+/node_modules/
+
+# Ignore composer.lock file (lock file for Composer dependencies)
+/composer.lock
+
+# Ignore .env file (environment configuration file)
+.env
+
+# Ignore .env.* environment file backups
+.env.*
+
+# Ignore logs and cached files
+/storage/logs/
+/storage/framework/cache/
+/storage/framework/sessions/
+/storage/framework/views/
+/storage/app/*.log
+/storage/app/*.gz
+
+# Ignore compiled application and PHP files
+/bootstrap/cache/
+/public/css/
+/public/js/
+/public/mix-manifest.json
+/public/hot/
+/public/storage/
+/public/web.config
+
+# Ignore IDE and editor specific files
+/.idea
+/.vscode
+/.phpstorm.meta.php
+/.phpstorm.meta.php/plugins
+
+# Ignore SQLite database files
+/*.sqlite
+/*.sqlite3
+
+# Ignore Homestead/Vagrant files
+Homestead.json
+Homestead.yaml
+Vagrantfile
+
+# Ignore local environment files
+.env.local
+.env.*.local
+
+# Ignore configuration environments
+.env.*.php
+
+# Ignore compiled classes
+*.phpstorm.meta.php
+
+# Ignore test logs
+/coverage/
+
+# Ignore macOS specific files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
