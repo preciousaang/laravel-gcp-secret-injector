@@ -74,4 +74,20 @@ class GcpSecretInjector implements SecretInjector
             throw $e;
         }
     }
+
+
+    public function loadSecret($envName, $secret)
+    {
+        if (is_null(env($envName))) {
+            $segments = explode(":", $secret);
+            if (count($segments) !== 2) {
+                throw new \Exception("Secret must be written in the format SECRET_NAME:VERSION");
+            }
+
+            $secretName = $segments[0];
+            $secretVersion =  $segments[1];
+
+            $_ENV[$envName] = $this->getSecret($secretName, $secretVersion, config('secret-injector.includedEnvs'));
+        }
+    }
 }
