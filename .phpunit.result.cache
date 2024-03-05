@@ -1,1 +1,0 @@
-{"version":1,"defects":[],"times":{"Tests\\GcpSecretInjectorTest::it_throws_exception_if_no_project_id_provided":0.003,"Tests\\GcpSecretInjectorTest::it_returns_secret_payload_when_available":0.031}}
