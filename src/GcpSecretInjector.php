@@ -3,6 +3,8 @@
 namespace Agz\LaravelGcpSecretInjector;
 
 use Agz\LaravelGcpSecretInjector\Exceptions\NoProjectIdProvidedException;
+use Google\ApiCore\ApiException;
+use Google\Cloud\SecretManager\V1\AccessSecretVersionRequest;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
 
 class GcpSecretInjector implements SecretInjector
@@ -32,6 +34,10 @@ class GcpSecretInjector implements SecretInjector
      * @param string $version
      * The secret version
      * 
+     * @param array $excludedEnvs
+     * Environments to exclude when running the method. 
+     * If the method is called in the environment, an empty string is returned
+     * 
      * @return mixed
      */
     public  function getSecret($secretName, $version = "latest", $excludedEnvs = ['local', 'testing'])
@@ -46,10 +52,26 @@ class GcpSecretInjector implements SecretInjector
             return $_ENV["$secretName:$version"];
         }
 
-        $name = $this->client->secretVersionName(
-            $this->projectId,
-            $secretName,
-            $version,
-        );
+
+
+        try {
+
+
+            $name = $this->client->secretVersionName(
+                $this->projectId,
+                $secretName,
+                $version,
+            );
+
+            $request = AccessSecretVersionRequest::build($name);
+            $response = $this->client->accessSecretVersion($request);
+
+
+            $payload = $response->getPayload()->getData();
+            $_ENV["$secretName:$version"] = $payload;
+            return $payload;
+        } catch (ApiException $e) {
+            throw $e->getMessage();
+        }
     }
 }
