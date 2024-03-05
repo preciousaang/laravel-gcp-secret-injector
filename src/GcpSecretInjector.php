@@ -71,7 +71,7 @@ class GcpSecretInjector implements SecretInjector
             $_ENV["$secretName:$version"] = $payload;
             return $payload;
         } catch (ApiException $e) {
-            throw $e->getMessage();
+            throw $e;
         }
     }
 }
