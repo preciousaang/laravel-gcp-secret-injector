@@ -22,7 +22,7 @@ class GcpSecretInjectorTest extends TestCase
         // Mocking the GcpSecretInjector instance
         $injector = $this->getMockBuilder(GcpSecretInjector::class)
             ->onlyMethods(['getSecret'])
-            ->setConstructorArgs([['project_id' => 'mock_project_id']])
+            ->disableOriginalConstructor()
             ->getMock();
 
         // Stubbing the getSecret method to return a mocked payload
