@@ -4,11 +4,6 @@ docs
 vendor
 coverage
 
-# Ignore PHPUnit generated files
-/phpunit.xml
-/phpunit.xml.dist
-/phpunit-*.xml
-/phpunit-*.xml.dist
 
 # Ignore PHPUnit code coverage reports
 /build/
