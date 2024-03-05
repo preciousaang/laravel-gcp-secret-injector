@@ -17,11 +17,11 @@ interface SecretInjector
      * @param string $version
      * The secret version
      * 
-     * @param array $excludedEnvs
+     * @param array $includedEnvs
      * Environments to exclude when running the method. 
-     * If the method is called in the environment, an empty string is returned
+     * The environment to this method for
      * 
      * @return mixed
      */
-    public function getSecret($secretName, $version = "latest", $excludedEnvs = ['local', 'testing']);
+    public function getSecret($secretName, $version = "latest", $includedEnvs = ['production']);
 }

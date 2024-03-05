@@ -24,6 +24,10 @@ class GcpSecretInjectorServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-
+        if (function_exists('config_path')) {
+            $this->publishes([
+                __DIR__ . '/config/secret-injector.php' => config_path('secret-injector.php')
+            ]);
+        }
     }
 }

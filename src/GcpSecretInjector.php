@@ -34,17 +34,17 @@ class GcpSecretInjector implements SecretInjector
      * @param string $version
      * The secret version
      * 
-     * @param array $excludedEnvs
+     * @param array $includedEnvs
      * Environments to exclude when running the method. 
      * If the method is called in the environment, an empty string is returned
      * 
      * @return mixed
      */
-    public  function getSecret($secretName, $version = "latest", $excludedEnvs = ['local', 'testing'])
+    public  function getSecret($secretName, $version = "latest", $includedEnvs = ['production'])
     {
 
 
-        if (env('APP_ENV') && in_array(env('APP_ENV'), $excludedEnvs)) {
+        if (env('APP_ENV') && !in_array(env('APP_ENV'), $includedEnvs)) {
             return '';
         }
 
