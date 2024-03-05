@@ -4,10 +4,6 @@ namespace Tests;
 
 use Agz\LaravelGcpSecretInjector\Exceptions\NoProjectIdProvidedException;
 use Agz\LaravelGcpSecretInjector\GcpSecretInjector;
-use Google\ApiCore\ApiException;
-use Google\Cloud\SecretManager\V1\AccessSecretVersionResponse;
-use Google\Cloud\SecretManager\V1\SecretManagerServiceClient;
-use Google\Cloud\SecretManager\V1\SecretPayload;
 use PHPUnit\Framework\TestCase;
 
 class GcpSecretInjectorTest extends TestCase
