@@ -14,5 +14,8 @@
             "email": "preciousaang@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "php": ">=8.0",
+        "google/cloud-secret-manager": "^1.13"
+    }
 }
