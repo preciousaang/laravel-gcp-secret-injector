@@ -1,5 +1,6 @@
 <?php
 
+namespace Agz\LaravelGcpSecretInjector;
 
 use Illuminate\Support\ServiceProvider;
 
