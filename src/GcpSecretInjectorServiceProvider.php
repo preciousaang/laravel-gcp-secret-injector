@@ -2,6 +2,7 @@
 
 namespace Agz\LaravelGcpSecretInjector;
 
+use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 
 class GcpSecretInjectorServiceProvider extends ServiceProvider
@@ -14,6 +15,11 @@ class GcpSecretInjectorServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->singleton(GcpSecretInjector::class, function (Application $app) {
+            return new GcpSecretInjector([
+                'project_id' => config('secret-injector.project_id')
+            ]);
+        });
     }
 
     /**
