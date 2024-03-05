@@ -6,6 +6,7 @@ use Agz\LaravelGcpSecretInjector\Exceptions\NoProjectIdProvidedException;
 use Google\ApiCore\ApiException;
 use Google\Cloud\SecretManager\V1\AccessSecretVersionRequest;
 use Google\Cloud\SecretManager\V1\Client\SecretManagerServiceClient;
+use Illuminate\Support\Facades\Artisan;
 
 class GcpSecretInjector implements SecretInjector
 {
@@ -44,15 +45,13 @@ class GcpSecretInjector implements SecretInjector
     {
 
 
-        if (env('APP_ENV') && !in_array(env('APP_ENV'), $includedEnvs)) {
+        if (!env('APP_ENV') || !in_array(env('APP_ENV'), $includedEnvs)) {
             return '';
         }
 
         if (array_key_exists("$secretName:$version", $_ENV)) {
             return $_ENV["$secretName:$version"];
         }
-
-
 
         try {
 
@@ -71,14 +70,14 @@ class GcpSecretInjector implements SecretInjector
             $_ENV["$secretName:$version"] = $payload;
             return $payload;
         } catch (ApiException $e) {
-            throw $e;
+            report($e);
         }
     }
 
 
     public function loadSecret($envName, $secret)
     {
-        if (is_null(env($envName))) {
+        if (is_null(env($envName)) || env($envName) == '') {
             $segments = explode(":", $secret);
             if (count($segments) !== 2) {
                 throw new \Exception("Secret must be written in the format SECRET_NAME:VERSION");
@@ -87,7 +86,9 @@ class GcpSecretInjector implements SecretInjector
             $secretName = $segments[0];
             $secretVersion =  $segments[1];
 
-            $_ENV[$envName] = $this->getSecret($secretName, $secretVersion, config('secret-injector.includedEnvs'));
+            $secretPayload =  $this->getSecret($secretName, $secretVersion, config('secret-injector.includedEnvs'));
+
+            $_ENV[$envName] = $secretPayload;
         }
     }
 }

@@ -3,7 +3,7 @@
 
 return [
 
-    'project_id' => env('GCP_PROJECT_ID'),
-    'includedEnvs' => ['local'],
+    'project_id' => env('GOOGLE_CLOUD_PROJECT'),
+    'includedEnvs' => ['production'],
     'secrets' => []
 ];

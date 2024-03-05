@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Facade;
 /**
  * @method static \Agz\LaravelGcpSecretInjector\GcpSecretInjector getSecret($secretName, $version='latest', $includedEnvs=['production'])
  * 
- *  @method static \Agz\LaravelGcpSecretInjector\GcpSecretInjector ($envName, $secret)
+ *  @method static \Agz\LaravelGcpSecretInjector\GcpSecretInjector loadSecret($envName, $secret)
  */
 class SecretInjector extends Facade
 {
