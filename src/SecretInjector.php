@@ -24,4 +24,7 @@ interface SecretInjector
      * @return mixed
      */
     public function getSecret($secretName, $version = "latest", $includedEnvs = ['production']);
+
+
+    public function loadSecret($envName, $secret);
 }
