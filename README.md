@@ -2,6 +2,10 @@
 
 This package helps load sensitive data from you Google Cloud Secret Manager into your laravel environment instead of explictly defining it in your .env file.
 
+## Prerequisite
+
+You need to already have `google/cloud-secret-manager` installed in your project.
+
 ## Installation
 
 You can install this package via composer:
