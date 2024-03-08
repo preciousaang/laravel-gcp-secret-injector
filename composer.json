@@ -23,7 +23,6 @@
     "require": {
         "php": "^7.4|^8.0",
         "ext-bcmath": "*",
-        "illuminate/support": "^8.0|^9.0|^10.0",
         "google/cloud-secret-manager": "^1.13"
     },
     "scripts": {
