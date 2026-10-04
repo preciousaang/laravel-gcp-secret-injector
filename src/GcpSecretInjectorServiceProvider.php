@@ -5,7 +5,6 @@ namespace Agz\LaravelGcpSecretInjector;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Support\ServiceProvider;
 use Agz\LaravelGcpSecretInjector\Facades\SecretInjector as SecretInjectorFacade;
-use Illuminate\Foundation\Bootstrap\LoadConfiguration;
 
 class GcpSecretInjectorServiceProvider extends ServiceProvider
 {
@@ -66,9 +65,7 @@ class GcpSecretInjectorServiceProvider extends ServiceProvider
             /**
              * After loading the environment, reload the configuration
              */
-            $v = new LoadConfiguration();
-
-            $v->bootstrap($this->app);
+            (new ReloadConfiguration())->reload($this->app);
         }
     }
 

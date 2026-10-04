@@ -35,6 +35,7 @@
         }
     },
     "require-dev": {
+        "laravel/framework": "^8.0|^9.0|^10.0|^11.0|^12.0",
         "phpunit/phpunit": "^9.0"
     }
 }
